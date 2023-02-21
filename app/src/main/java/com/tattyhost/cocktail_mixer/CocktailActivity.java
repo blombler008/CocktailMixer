@@ -4,12 +4,10 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.pm.ActivityInfo;
 import android.os.Bundle;
-import android.view.View;
 import android.view.WindowManager;
 
 import com.tattyhost.cocktail_mixer.databinding.ActivityMainBinding;
-
-import java.util.Objects;
+import com.tattyhost.cocktail_mixer.helper.WindowHelper;
 
 import lombok.Getter;
 
@@ -20,11 +18,14 @@ public class CocktailActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
-                WindowManager.LayoutParams.FLAG_FULLSCREEN);
+        binding = ActivityMainBinding.inflate(getLayoutInflater());
+
+        WindowHelper.setFullscreen(getWindow());
+        WindowHelper.setKeepScreenOn(getWindow());
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_SENSOR_LANDSCAPE);
-        ActivityMainBinding binding = ActivityMainBinding.inflate(getLayoutInflater());
-        this.binding = binding;
         setContentView(binding.getRoot());
     }
+
+
+
 }
