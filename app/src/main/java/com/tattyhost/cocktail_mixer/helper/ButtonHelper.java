@@ -16,6 +16,8 @@ public class ButtonHelper {
 
     public void register(ButtonAction button) {
         Button b = button.getButton();
+        button.setBinding(mainBinding);
+        button.setActivity(activity);
         b.setOnClickListener(button::getOnClickListener);
     }
 }
