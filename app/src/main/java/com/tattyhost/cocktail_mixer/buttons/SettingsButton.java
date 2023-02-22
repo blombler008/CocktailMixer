@@ -1,19 +1,18 @@
-package com.tattyhost.cocktail_mixer;
+package com.tattyhost.cocktail_mixer.buttons;
 
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
-import android.widget.TextView;
 
-import com.tattyhost.cocktail_mixer.databinding.ActivityMainBinding;
+import com.tattyhost.cocktail_mixer.R;
 import com.tattyhost.cocktail_mixer.helper.ButtonAction;
 import com.tattyhost.cocktail_mixer.helper.ViewState;
 
-public class MenuButton extends ButtonAction {
+public class SettingsButton extends ButtonAction {
     private Button button;
 
-    public MenuButton(Button button) {
+    public SettingsButton(Button button) {
         this.button = button;
     }
 
@@ -24,19 +23,18 @@ public class MenuButton extends ButtonAction {
 
     @Override
     public void getOnClickListener(View view) {
-        setMenuView();
+      setSettingsView();
     }
 
-    public MenuButton setMenuView() {
-
-        if(getActivity().getViewState() == ViewState.MENU) {
+    public SettingsButton setSettingsView() {
+        if(getActivity().getViewState() == ViewState.SETTINGS) {
             return this;
         }
-        getActivity().setViewState(ViewState.MENU);
+        getActivity().setViewState(ViewState.SETTINGS);
 
         LayoutInflater layoutInflater = (LayoutInflater) getActivity().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 
-        View layout = layoutInflater.inflate(R.layout.menu_view, null);
+        View layout = layoutInflater.inflate(R.layout.settings_view, null);
         getBinding().contentView.removeAllViews();
         getBinding().contentView.addView(layout);
         return this;

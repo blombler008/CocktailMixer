@@ -4,10 +4,11 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.pm.ActivityInfo;
 import android.os.Bundle;
-import android.view.WindowManager;
 
+import com.tattyhost.cocktail_mixer.buttons.HomeButton;
+import com.tattyhost.cocktail_mixer.buttons.MenuButton;
+import com.tattyhost.cocktail_mixer.buttons.SettingsButton;
 import com.tattyhost.cocktail_mixer.databinding.ActivityMainBinding;
-import com.tattyhost.cocktail_mixer.helper.ButtonAction;
 import com.tattyhost.cocktail_mixer.helper.ButtonHelper;
 import com.tattyhost.cocktail_mixer.helper.ViewState;
 import com.tattyhost.cocktail_mixer.helper.WindowHelper;
@@ -48,7 +49,7 @@ public class CocktailActivity extends AppCompatActivity {
     }
 
     private MenuButton getMenuButton() {
-        return new MenuButton(binding.menuButton);
+        return new MenuButton(this, binding.menuButton);
     }
 
 

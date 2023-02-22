@@ -1,22 +1,19 @@
-package com.tattyhost.cocktail_mixer;
+package com.tattyhost.cocktail_mixer.buttons;
 
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
-import android.widget.TextView;
 
+import com.tattyhost.cocktail_mixer.R;
 import com.tattyhost.cocktail_mixer.helper.ButtonAction;
 import com.tattyhost.cocktail_mixer.helper.ViewState;
 
-import java.lang.reflect.Array;
-import java.util.Set;
-
-public class SettingsButton extends ButtonAction {
+public class HomeButton extends ButtonAction {
     private Button button;
 
-    public SettingsButton(Button button) {
-        this.button = button;
+    public HomeButton(Button homeButton) {
+        this.button = homeButton;
     }
 
     @Override
@@ -26,20 +23,21 @@ public class SettingsButton extends ButtonAction {
 
     @Override
     public void getOnClickListener(View view) {
-      setSettingsView();
+        setHomeView();
     }
 
-    public SettingsButton setSettingsView() {
-        if(getActivity().getViewState() == ViewState.SETTINGS) {
+    public HomeButton setHomeView() {
+        if(getActivity().getViewState() == ViewState.HOME) {
             return this;
         }
-        getActivity().setViewState(ViewState.SETTINGS);
+        getActivity().setViewState(ViewState.HOME);
 
         LayoutInflater layoutInflater = (LayoutInflater) getActivity().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 
-        View layout = layoutInflater.inflate(R.layout.settings_view, null);
+        View layout = layoutInflater.inflate(R.layout.home_view, null);
         getBinding().contentView.removeAllViews();
         getBinding().contentView.addView(layout);
+
         return this;
     }
 }

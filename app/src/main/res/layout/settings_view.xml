@@ -1,15 +1,47 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <TextView
-        android:id="@+id/textView"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:text="TODO: BUTTON TO ADD MENU ITEMS, CLEAR MENU ITEMS, AND CONNECT ESP VIA WIFI"
-        app:layout_constraintEnd_toEndOf="parent"
+    <Button
+        android:id="@+id/addCocktailButton"
+        style="@style/Theme.CocktailMixer.Button"
+        android:layout_width="200dp"
+        android:layout_height="75dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="24dp"
+        android:text="@string/add_cocktail"
+        app:backgroundTint="@color/secondaryVariant"
+        app:layout_constraintEnd_toStartOf="@+id/clearCocktailButton"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/clearCocktailButton"
+        style="@style/Theme.CocktailMixer.Button"
+        android:layout_width="200dp"
+        android:layout_height="75dp"
+        android:text="@string/clear_cocktails"
+        app:backgroundTint="@color/secondaryVariant"
+        app:layout_constraintBottom_toBottomOf="@+id/addCocktailButton"
+        app:layout_constraintEnd_toStartOf="@+id/connectESPButton"
+        app:layout_constraintStart_toEndOf="@+id/addCocktailButton"
+        app:layout_constraintTop_toTopOf="@+id/addCocktailButton" />
+
+    <Button
+        android:id="@+id/connectESPButton"
+        style="@style/Theme.CocktailMixer.Button"
+        android:layout_width="200dp"
+        android:layout_height="75dp"
+        android:layout_marginEnd="24dp"
+        android:text="@string/connect_esp"
+        app:backgroundTint="@color/secondaryVariant"
+        app:layout_constraintBottom_toBottomOf="@+id/clearCocktailButton"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/clearCocktailButton"
+        app:layout_constraintTop_toTopOf="@+id/clearCocktailButton" />
+
+
 </androidx.constraintlayout.widget.ConstraintLayout>
