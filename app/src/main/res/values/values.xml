@@ -1,4 +1,4 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <dimen name="spacing_lft_rt">250sp</dimen>
+    <dimen name="spacing_lft_rt">150sp</dimen>
 </resources>

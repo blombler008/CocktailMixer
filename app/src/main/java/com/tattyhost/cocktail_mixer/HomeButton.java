@@ -22,10 +22,13 @@ public class HomeButton extends ButtonAction {
     }
 
     @Override
-    public void getOnClickListener(View view) { 
+    public void getOnClickListener(View view) {
+        setHomeView();
+    }
 
+    public HomeButton setHomeView() {
         if(getActivity().getViewState() == ViewState.HOME) {
-            return;
+            return this;
         }
         getActivity().setViewState(ViewState.HOME);
 
@@ -35,8 +38,6 @@ public class HomeButton extends ButtonAction {
         getBinding().contentView.removeAllViews();
         getBinding().contentView.addView(layout);
 
-    }
-
-    public void setHomeView() {
+        return this;
     }
 }

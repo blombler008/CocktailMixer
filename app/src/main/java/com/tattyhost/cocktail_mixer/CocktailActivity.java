@@ -28,13 +28,15 @@ public class CocktailActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         buttonHelper = new ButtonHelper(this);
-        buttonHelper.register(getHomeButton());
+        HomeButton defaultButton = getHomeButton();
+        buttonHelper.register(defaultButton);
         buttonHelper.register(getSettingsButton());
         buttonHelper.register(getMenuButton());
         WindowHelper.setFullscreen(getWindow());
         WindowHelper.setKeepScreenOn(getWindow());
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_SENSOR_LANDSCAPE);
         setContentView(binding.getRoot());
+        defaultButton.setHomeView();
     }
 
     private HomeButton getHomeButton() {

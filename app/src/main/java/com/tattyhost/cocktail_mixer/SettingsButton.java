@@ -10,6 +10,7 @@ import com.tattyhost.cocktail_mixer.helper.ButtonAction;
 import com.tattyhost.cocktail_mixer.helper.ViewState;
 
 import java.lang.reflect.Array;
+import java.util.Set;
 
 public class SettingsButton extends ButtonAction {
     private Button button;
@@ -25,8 +26,12 @@ public class SettingsButton extends ButtonAction {
 
     @Override
     public void getOnClickListener(View view) {
+      setSettingsView();
+    }
+
+    public SettingsButton setSettingsView() {
         if(getActivity().getViewState() == ViewState.SETTINGS) {
-            return;
+            return this;
         }
         getActivity().setViewState(ViewState.SETTINGS);
 
@@ -35,8 +40,6 @@ public class SettingsButton extends ButtonAction {
         View layout = layoutInflater.inflate(R.layout.settings_view, null);
         getBinding().contentView.removeAllViews();
         getBinding().contentView.addView(layout);
-    }
-
-    public void setSettingsView() {
+        return this;
     }
 }

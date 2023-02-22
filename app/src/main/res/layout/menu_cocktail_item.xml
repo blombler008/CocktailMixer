@@ -2,16 +2,19 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@color/onSecondary"
-    android:maxWidth="100dp"
-    android:maxHeight="100dp">
+    android:id="@+id/menuCocktailItem"
+    android:layout_height="200dp"
+    android:layout_width="200dp"
+    app:layout_constraintHeight_min="200dp"
+    app:layout_constraintWidth_min="200dp"
+    app:layout_constraintHeight_max="200dp"
+    app:layout_constraintWidth_max="200dp"
+    android:background="@color/onSecondary" >
 
     <ImageView
-        android:id="@+id/imageView2"
+        android:id="@+id/cocktailImage"
         android:layout_width="0dp"
-        android:layout_height="54dp"
+        android:layout_height="0dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
@@ -20,6 +23,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/menuItemText"
         app:srcCompat="@drawable/cocktail_icon" />
 
     <TextView
@@ -32,8 +36,7 @@
         android:text="Menu Item 1"
         android:textAlignment="center"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="@+id/imageView2"
-        app:layout_constraintHorizontal_bias="0.51"
-        app:layout_constraintStart_toStartOf="@+id/imageView2"
-        app:layout_constraintTop_toBottomOf="@+id/imageView2" />
+        app:layout_constraintEnd_toEndOf="@+id/cocktailImage"
+        app:layout_constraintStart_toStartOf="@+id/cocktailImage"
+        app:layout_constraintTop_toBottomOf="@+id/cocktailImage" />
 </androidx.constraintlayout.widget.ConstraintLayout>

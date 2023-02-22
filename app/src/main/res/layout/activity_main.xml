@@ -14,8 +14,8 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="32dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/guideline4"
-        app:layout_constraintStart_toStartOf="@+id/guideline3"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/contentView">
 
         <Button
@@ -26,9 +26,9 @@
             android:text="@string/homeButton"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/menuButton"
+            app:layout_constraintHorizontal_chainStyle="spread"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintHorizontal_chainStyle="spread_inside" />
+            app:layout_constraintTop_toTopOf="parent" />
 
         <Button
             android:id="@+id/menuButton"

@@ -24,9 +24,13 @@ public class MenuButton extends ButtonAction {
 
     @Override
     public void getOnClickListener(View view) {
+        setMenuView();
+    }
+
+    public MenuButton setMenuView() {
 
         if(getActivity().getViewState() == ViewState.MENU) {
-            return;
+            return this;
         }
         getActivity().setViewState(ViewState.MENU);
 
@@ -35,8 +39,6 @@ public class MenuButton extends ButtonAction {
         View layout = layoutInflater.inflate(R.layout.menu_view, null);
         getBinding().contentView.removeAllViews();
         getBinding().contentView.addView(layout);
-    }
-
-    public void setMenuView() {
+        return this;
     }
 }
