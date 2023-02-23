@@ -5,15 +5,23 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
 
+import com.tattyhost.cocktail_mixer.CocktailActivity;
 import com.tattyhost.cocktail_mixer.R;
+import com.tattyhost.cocktail_mixer.databinding.ActivityMainBinding;
+import com.tattyhost.cocktail_mixer.databinding.HomeViewBinding;
 import com.tattyhost.cocktail_mixer.helper.ButtonAction;
 import com.tattyhost.cocktail_mixer.helper.ViewState;
 
 public class HomeButton extends ButtonAction {
     private Button button;
-
-    public HomeButton(Button homeButton) {
+    private CocktailActivity activity;
+    private ActivityMainBinding binding;
+    private HomeViewBinding homeBinding;
+    public HomeButton(CocktailActivity cocktailActivity, Button homeButton) {
         this.button = homeButton;
+        this.activity = cocktailActivity;
+        this.binding = activity.getBinding();
+        homeBinding = HomeViewBinding.inflate(activity.getLayoutInflater());
     }
 
     @Override
@@ -27,16 +35,13 @@ public class HomeButton extends ButtonAction {
     }
 
     public HomeButton setHomeView() {
-        if(getActivity().getViewState() == ViewState.HOME) {
+        if(activity.getViewState() == ViewState.HOME) {
             return this;
         }
-        getActivity().setViewState(ViewState.HOME);
+        activity.setViewState(ViewState.HOME);
 
-        LayoutInflater layoutInflater = (LayoutInflater) getActivity().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-
-        View layout = layoutInflater.inflate(R.layout.home_view, null);
-        getBinding().contentView.removeAllViews();
-        getBinding().contentView.addView(layout);
+        binding.contentView.removeAllViews();
+        binding.contentView.addView(homeBinding.getRoot());
 
         return this;
     }

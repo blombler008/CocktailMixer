@@ -1,9 +1,11 @@
 package com.tattyhost.cocktail_mixer.menu;
 
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.constraintlayout.widget.ConstraintLayout;
@@ -11,6 +13,7 @@ import androidx.constraintlayout.widget.ConstraintSet;
 
 import com.tattyhost.cocktail_mixer.CocktailActivity;
 import com.tattyhost.cocktail_mixer.R;
+import com.tattyhost.cocktail_mixer.databinding.MenuCocktailItemBinding;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -26,6 +29,7 @@ public class MenuCocktail extends ConstraintLayout {
     @Getter @Setter
     private int margin = 8;
     private boolean constraintsSet = false;
+
     public MenuCocktail(@NonNull Context context, int rows) {
         super(context);
         this.rows = rows;
@@ -35,22 +39,37 @@ public class MenuCocktail extends ConstraintLayout {
         constraintSet.clone(this);
     }
 
-    public void addItem(int item, CocktailActivity activity) {
+    public void addItem(String text, int item, CocktailActivity activity) {
 
-        LayoutInflater layoutInflater = (LayoutInflater) activity.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        MenuCocktailItemBinding binding = MenuCocktailItemBinding.inflate(activity.getLayoutInflater());
+        TextView buttonText = binding.menuItemText;
+        buttonText.setText(text);
+        binding.menuCocktailItem.setId(View.generateViewId());
+        addView(binding.menuCocktailItem);
+        itemList.add(binding.menuCocktailItem);
+        constraintsSet = false;
+        Log.i("MENU", "Added Cocktail Menu Item");
 
-        View layout = layoutInflater.inflate(R.layout.menu_cocktail_item, null);
+    }
 
-        layout.setId(View.generateViewId());
-        addView(layout);
-        itemList.add(layout);
+    public void clear() {
+        itemList.clear();
+        removeAllViews();
+        Log.i("MENU", "Cleared CocktailItems");
+        constraintSet = new ConstraintSet();
+        constraintSet.clone(this);
+        Log.i("MENU", "Cleared Constraints");
     }
 
     public MenuCocktail apply() {
+        Log.i("MENU", "Applying Constraints");
         if(constraintsSet) return this;
+
         setConstraints();
         constraintsSet = true;
         constraintSet.applyTo(this);
+
+        Log.i("MENU", "Applied Constraints");
         return this;
     }
 
@@ -59,7 +78,6 @@ public class MenuCocktail extends ConstraintLayout {
         for(int i = 0; i < itemList.size(); i ++) {
             View item = itemList.get(i);
             int viewId = item.getId();
-
             setDimensions(viewId, constraintSet);
 
             setFirstItemProperties(constraintSet, viewId, i);

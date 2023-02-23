@@ -9,6 +9,7 @@ import com.tattyhost.cocktail_mixer.buttons.HomeButton;
 import com.tattyhost.cocktail_mixer.buttons.MenuButton;
 import com.tattyhost.cocktail_mixer.buttons.SettingsButton;
 import com.tattyhost.cocktail_mixer.databinding.ActivityMainBinding;
+import com.tattyhost.cocktail_mixer.helper.ButtonAction;
 import com.tattyhost.cocktail_mixer.helper.ButtonHelper;
 import com.tattyhost.cocktail_mixer.helper.ViewState;
 import com.tattyhost.cocktail_mixer.helper.WindowHelper;
@@ -24,32 +25,53 @@ public class CocktailActivity extends AppCompatActivity {
     @Getter
     private ButtonHelper buttonHelper;
 
+    @Getter
+    private SettingsButton settingsButton;
+    @Getter
+    private MenuButton menuButton;
+    @Getter
+    private HomeButton homeButton;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         binding = ActivityMainBinding.inflate(getLayoutInflater());
-        buttonHelper = new ButtonHelper(this);
-        HomeButton defaultButton = getHomeButton();
-        buttonHelper.register(defaultButton);
-        buttonHelper.register(getSettingsButton());
-        buttonHelper.register(getMenuButton());
+
+        initButtons();
+
+        buttonHelper = new ButtonHelper(this, binding);
+
+        buttonHelper.register(homeButton);
+        buttonHelper.register(settingsButton);
+        buttonHelper.register(menuButton);
+
+        for(ButtonAction action: settingsButton.getButtons()) {
+            buttonHelper.register(action);
+        }
         WindowHelper.setFullscreen(getWindow());
         WindowHelper.setKeepScreenOn(getWindow());
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_SENSOR_LANDSCAPE);
         setContentView(binding.getRoot());
-        defaultButton.setHomeView();
+        homeButton.setHomeView();
+
     }
 
-    private HomeButton getHomeButton() {
-        return new HomeButton(binding.homeButton);
+    private void initButtons() {
+        homeButton =  new HomeButton(this, binding.homeButton);
+        settingsButton = new SettingsButton(this, binding.settingsButton);
+        menuButton = new MenuButton(this, binding.menuButton);
     }
 
-    private SettingsButton getSettingsButton() {
-        return new SettingsButton(binding.settingsButton);
+    public HomeButton getHomeButton() {
+        return homeButton;
     }
 
-    private MenuButton getMenuButton() {
-        return new MenuButton(this, binding.menuButton);
+    public SettingsButton getSettingsButton() {
+        return settingsButton;
+    }
+
+    public MenuButton getMenuButton() {
+        return menuButton;
     }
 
 

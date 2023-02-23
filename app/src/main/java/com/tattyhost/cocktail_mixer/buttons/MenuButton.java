@@ -1,32 +1,40 @@
 package com.tattyhost.cocktail_mixer.buttons;
 
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 
 import com.tattyhost.cocktail_mixer.CocktailActivity;
 import com.tattyhost.cocktail_mixer.R;
+import com.tattyhost.cocktail_mixer.databinding.ActivityMainBinding;
 import com.tattyhost.cocktail_mixer.helper.ButtonAction;
 import com.tattyhost.cocktail_mixer.helper.ViewState;
 import com.tattyhost.cocktail_mixer.menu.MenuCocktail;
 
+import lombok.Getter;
+
 public class MenuButton extends ButtonAction {
     private Button button;
+    @Getter
     private MenuCocktail menu;
-
+    private CocktailActivity activity;
+    private ActivityMainBinding binding;
     public MenuButton(CocktailActivity cocktailActivity, Button button) {
         this.button = button;
-        this.setActivity(cocktailActivity);
-        menu = new MenuCocktail(getActivity(),4);
-        for (int i = 0; i < 15; i++) {
+        this.activity = cocktailActivity;
+        this.binding = activity.getBinding();
 
-            menu.addItem(R.layout.menu_cocktail_item, getActivity());
-        }
-
+        menu = new MenuCocktail(activity,4);
     }
 
     @Override
     public Button getButton() {
         return button;
+    }
+
+    public void addButton(String text) {
+        Log.i("BUTTON", "addButton: add: " + text);
+        menu.addItem(text, R.layout.menu_cocktail_item, activity);
     }
 
     @Override
@@ -36,14 +44,14 @@ public class MenuButton extends ButtonAction {
 
     public MenuButton setMenuView() {
 
-        if(getActivity().getViewState() == ViewState.MENU) {
+        if(activity.getViewState() == ViewState.MENU) {
             return this;
         }
-        getActivity().setViewState(ViewState.MENU);
+        activity.setViewState(ViewState.MENU);
 
         menu.apply();
-        getBinding().contentView.removeAllViews();
-        getBinding().contentView.addView(menu);
+        binding.contentView.removeAllViews();
+        binding.contentView.addView(menu);
         return this;
     }
 }

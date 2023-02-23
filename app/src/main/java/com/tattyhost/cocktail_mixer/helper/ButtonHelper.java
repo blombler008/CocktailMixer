@@ -1,23 +1,28 @@
 package com.tattyhost.cocktail_mixer.helper;
 
+
+import android.util.Log;
 import android.widget.Button;
+
+import androidx.viewbinding.ViewBinding;
 
 import com.tattyhost.cocktail_mixer.CocktailActivity;
 import com.tattyhost.cocktail_mixer.databinding.ActivityMainBinding;
 
 public class ButtonHelper {
-    private ActivityMainBinding mainBinding;
+
+    private static final String TAG = "BUTTON REGISTER";
+    private ViewBinding binding;
     private CocktailActivity activity;
 
-    public ButtonHelper(CocktailActivity activity) {
+    public ButtonHelper(CocktailActivity activity, ViewBinding binding) {
         this.activity = activity;
-        this.mainBinding = activity.getBinding();
+        this.binding = binding;
     }
 
     public void register(ButtonAction button) {
         Button b = button.getButton();
-        button.setBinding(mainBinding);
-        button.setActivity(activity);
-        b.setOnClickListener(button::getOnClickListener);
+        Log.i(TAG, "register: " + b.toString());
+        button.getButton().setOnClickListener(button::getOnClickListener);
     }
 }
