@@ -30,6 +30,7 @@ public class SettingsButton extends ButtonAction {
         settingsBinding = SettingsViewBinding.inflate(activity.getLayoutInflater());
         addCocktailItemButton();
         clearCocktailsButton();
+        buttonActions.add(new ConnectESPButton(settingsBinding.connectESPButton, settingsBinding.espOutputText));
     }
 
     private void addCocktailItemButton() {
