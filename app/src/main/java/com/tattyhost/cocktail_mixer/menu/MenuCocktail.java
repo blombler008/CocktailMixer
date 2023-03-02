@@ -75,7 +75,7 @@ public class MenuCocktail extends ConstraintLayout {
 
     private void setConstraints() {
         cols = getColumns(itemList.size());
-        for(int i = 0; i < itemList.size(); i ++) {
+        for(int i = 0; i < itemList.size(); ++i) {
             View item = itemList.get(i);
             int viewId = item.getId();
             setDimensions(viewId, constraintSet);
@@ -135,7 +135,6 @@ public class MenuCocktail extends ConstraintLayout {
     private void setFirstItemProperties(ConstraintSet constraintSet, int viewId, int n) {
         if(!isFirstItem(n)) return;
 
-        constraintSet.setHorizontalChainStyle(viewId, ConstraintSet.CHAIN_SPREAD);
         constraintSet.setHorizontalChainStyle(viewId, ConstraintSet.CHAIN_SPREAD);
         constraintSet.connect(viewId, ConstraintSet.TOP, ConstraintSet.PARENT_ID, ConstraintSet.TOP, margin);
     }

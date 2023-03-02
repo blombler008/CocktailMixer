@@ -46,8 +46,9 @@ public class SettingsButton extends ButtonAction {
                 String buttonText = "Button " + buttons;
                 activity.getMenuButton().addButton(buttonText);
                 Log.i("BUTTON", "getOnClickListener: ADDED BUTTON: " + buttonText);
-             }
+            }
         };
+
         buttonActions.add(action);
 
     }
@@ -65,6 +66,7 @@ public class SettingsButton extends ButtonAction {
                 buttons = 0;
             }
         };
+
         buttonActions.add(action);
 
     }

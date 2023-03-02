@@ -36,7 +36,6 @@ public class CocktailActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         binding = ActivityMainBinding.inflate(getLayoutInflater());
-
         initButtons();
 
         buttonHelper = new ButtonHelper(this, binding);
@@ -48,12 +47,17 @@ public class CocktailActivity extends AppCompatActivity {
         for(ButtonAction action: settingsButton.getButtons()) {
             buttonHelper.register(action);
         }
+
         WindowHelper.setFullscreen(getWindow());
         WindowHelper.setKeepScreenOn(getWindow());
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_SENSOR_LANDSCAPE);
         setContentView(binding.getRoot());
         homeButton.setHomeView();
+    }
 
+    @Override
+    public void onBackPressed() {
+        homeButton.setHomeView();
     }
 
     private void initButtons() {
@@ -73,7 +77,5 @@ public class CocktailActivity extends AppCompatActivity {
     public MenuButton getMenuButton() {
         return menuButton;
     }
-
-
 
 }
