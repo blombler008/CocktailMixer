@@ -12,8 +12,11 @@ import lombok.Getter;
 import lombok.Setter;
 
 public abstract class ButtonAction {
+    @Getter @Setter
+    private CocktailActivity activity;
 
     public abstract Button getButton();
+
 
     public abstract void getOnClickListener(View view);
 

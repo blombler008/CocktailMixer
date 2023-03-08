@@ -7,4 +7,5 @@
     <string name="add_cocktail">Add Cocktail</string>
     <string name="connect_esp">Connect ESP</string>
     <string name="clear_cocktails">Clear Cocktails</string>
+    <string name="uid">UID: %s</string>
 </resources>

@@ -13,6 +13,7 @@ import com.tattyhost.cocktail_mixer.helper.ButtonAction;
 import com.tattyhost.cocktail_mixer.helper.ButtonHelper;
 import com.tattyhost.cocktail_mixer.helper.ViewState;
 import com.tattyhost.cocktail_mixer.helper.WindowHelper;
+import com.tattyhost.cocktail_mixer.menu.MenuCocktail;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -41,8 +42,8 @@ public class CocktailActivity extends AppCompatActivity {
         buttonHelper = new ButtonHelper(this, binding);
 
         buttonHelper.register(homeButton);
-        buttonHelper.register(settingsButton);
         buttonHelper.register(menuButton);
+        buttonHelper.register(settingsButton);
 
         for(ButtonAction action: settingsButton.getButtons()) {
             buttonHelper.register(action);
@@ -62,20 +63,11 @@ public class CocktailActivity extends AppCompatActivity {
 
     private void initButtons() {
         homeButton =  new HomeButton(this, binding.homeButton);
-        settingsButton = new SettingsButton(this, binding.settingsButton);
         menuButton = new MenuButton(this, binding.menuButton);
+        settingsButton = new SettingsButton(this, binding.settingsButton);
     }
 
-    public HomeButton getHomeButton() {
-        return homeButton;
+    public MenuCocktail getMenu() {
+        return menuButton.getMenu();
     }
-
-    public SettingsButton getSettingsButton() {
-        return settingsButton;
-    }
-
-    public MenuButton getMenuButton() {
-        return menuButton;
-    }
-
 }

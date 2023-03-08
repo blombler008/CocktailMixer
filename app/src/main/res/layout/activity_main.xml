@@ -94,5 +94,15 @@
 
     </ScrollView>
 
+    <TextView
+        android:id="@+id/uid"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toTopOf="@+id/contentView"
+        app:layout_constraintEnd_toStartOf="@+id/guideline4"
+        app:layout_constraintStart_toEndOf="@+id/appNameView" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

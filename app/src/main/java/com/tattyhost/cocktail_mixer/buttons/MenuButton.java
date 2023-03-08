@@ -14,11 +14,12 @@ import com.tattyhost.cocktail_mixer.menu.MenuCocktail;
 import lombok.Getter;
 
 public class MenuButton extends ButtonAction {
-    private Button button;
+    private final Button button;
     @Getter
-    private MenuCocktail menu;
-    private CocktailActivity activity;
-    private ActivityMainBinding binding;
+    private final MenuCocktail menu;
+    private final CocktailActivity activity;
+    private final ActivityMainBinding binding;
+
     public MenuButton(CocktailActivity cocktailActivity, Button button) {
         this.button = button;
         this.activity = cocktailActivity;
@@ -34,7 +35,7 @@ public class MenuButton extends ButtonAction {
 
     public void addButton(String text) {
         Log.i("BUTTON", "addButton: add: " + text);
-        menu.addItem(text, R.layout.menu_cocktail_item, activity);
+        menu.addItem(text, activity);
     }
 
     @Override

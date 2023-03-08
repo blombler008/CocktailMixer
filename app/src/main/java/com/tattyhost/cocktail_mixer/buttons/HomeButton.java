@@ -13,15 +13,14 @@ import com.tattyhost.cocktail_mixer.helper.ButtonAction;
 import com.tattyhost.cocktail_mixer.helper.ViewState;
 
 public class HomeButton extends ButtonAction {
-    private Button button;
-    private CocktailActivity activity;
-    private ActivityMainBinding binding;
-    private HomeViewBinding homeBinding;
+    private final Button button;
+    private final ActivityMainBinding binding;
+    private final HomeViewBinding homeBinding;
     public HomeButton(CocktailActivity cocktailActivity, Button homeButton) {
         this.button = homeButton;
-        this.activity = cocktailActivity;
-        this.binding = activity.getBinding();
-        homeBinding = HomeViewBinding.inflate(activity.getLayoutInflater());
+        setActivity(cocktailActivity);
+        this.binding = getActivity().getBinding();
+        homeBinding = HomeViewBinding.inflate(getActivity().getLayoutInflater());
     }
 
     @Override
@@ -35,10 +34,10 @@ public class HomeButton extends ButtonAction {
     }
 
     public HomeButton setHomeView() {
-        if(activity.getViewState() == ViewState.HOME) {
+        if(getActivity().getViewState() == ViewState.HOME) {
             return this;
         }
-        activity.setViewState(ViewState.HOME);
+        getActivity().setViewState(ViewState.HOME);
 
         binding.contentView.removeAllViews();
         binding.contentView.addView(homeBinding.getRoot());

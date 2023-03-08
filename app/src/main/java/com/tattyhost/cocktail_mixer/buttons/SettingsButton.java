@@ -17,23 +17,23 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class SettingsButton extends ButtonAction {
-    private Button button;
-    private SettingsViewBinding settingsBinding;
-    private ActivityMainBinding binding;
-    private CocktailActivity activity;
-    private List<ButtonAction> buttonActions = new ArrayList<>();
+    private final Button button;
+    private final SettingsViewBinding settingsBinding;
+    private final ActivityMainBinding binding;
+    private final List<ButtonAction> buttonActions = new ArrayList<>();
+
     private int buttons;
     public SettingsButton(CocktailActivity cocktailActivity, Button button) {
         this.button = button;
-        this.activity = cocktailActivity;
-        binding = activity.getBinding();
-        settingsBinding = SettingsViewBinding.inflate(activity.getLayoutInflater());
-        addCocktailItemButton();
-        clearCocktailsButton();
-        buttonActions.add(new ConnectESPButton(settingsBinding.connectESPButton, settingsBinding.espOutputText));
+        setActivity(cocktailActivity);
+        binding = getActivity().getBinding();
+        settingsBinding = SettingsViewBinding.inflate(getActivity().getLayoutInflater());
+        addCocktailItemButton(this);
+        clearCocktailsButton(this);
+        buttonActions.add(new ConnectESPButton(getActivity(), settingsBinding.connectESPButton, settingsBinding.espOutputText));
     }
 
-    private void addCocktailItemButton() {
+    private void addCocktailItemButton(SettingsButton sb) {
         ButtonAction action = new ButtonAction() {
             @Override
             public Button getButton() {
@@ -44,7 +44,7 @@ public class SettingsButton extends ButtonAction {
             public void getOnClickListener(View view) {
                 buttons ++;
                 String buttonText = "Button " + buttons;
-                activity.getMenuButton().addButton(buttonText);
+                sb.getActivity().getMenuButton().addButton(buttonText);
                 Log.i("BUTTON", "getOnClickListener: ADDED BUTTON: " + buttonText);
             }
         };
@@ -53,7 +53,7 @@ public class SettingsButton extends ButtonAction {
 
     }
 
-    private void clearCocktailsButton() {
+    private void clearCocktailsButton(SettingsButton sb) {
         ButtonAction action = new ButtonAction() {
             @Override
             public Button getButton() {
@@ -62,7 +62,7 @@ public class SettingsButton extends ButtonAction {
 
             @Override
             public void getOnClickListener(View view) {
-                activity.getMenuButton().getMenu().clear();
+                sb.getActivity().getMenuButton().getMenu().clear();
                 buttons = 0;
             }
         };
@@ -82,10 +82,10 @@ public class SettingsButton extends ButtonAction {
     }
 
     public SettingsButton setSettingsView() {
-        if(activity.getViewState() == ViewState.SETTINGS) {
+        if(getActivity().getViewState() == ViewState.SETTINGS) {
             return this;
         }
-        activity.setViewState(ViewState.SETTINGS);
+        getActivity().setViewState(ViewState.SETTINGS);
 
         binding.contentView.removeAllViews();
         binding.contentView.addView(settingsBinding.getRoot());

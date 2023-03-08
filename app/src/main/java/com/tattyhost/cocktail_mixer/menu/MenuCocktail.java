@@ -39,7 +39,7 @@ public class MenuCocktail extends ConstraintLayout {
         constraintSet.clone(this);
     }
 
-    public void addItem(String text, int item, CocktailActivity activity) {
+    public ConstraintLayout addItem(String text, CocktailActivity activity) {
 
         MenuCocktailItemBinding binding = MenuCocktailItemBinding.inflate(activity.getLayoutInflater());
         TextView buttonText = binding.menuItemText;
@@ -49,6 +49,7 @@ public class MenuCocktail extends ConstraintLayout {
         itemList.add(binding.menuCocktailItem);
         constraintsSet = false;
         Log.i("MENU", "Added Cocktail Menu Item");
+        return binding.menuCocktailItem;
 
     }
 
