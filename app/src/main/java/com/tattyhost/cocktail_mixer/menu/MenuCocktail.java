@@ -61,6 +61,13 @@ public class MenuCocktail extends ConstraintLayout {
         constraintSet.clone(this);
         Log.i("MENU", "Cleared Constraints");
     }
+    public void clear(int view) {
+        itemList.remove(view);
+        removeAllViews();
+        constraintSet = new ConstraintSet();
+        constraintSet.clone(this);
+        Log.i("MENU", "Cleared Constraints");
+    }
 
     public MenuCocktail apply() {
         Log.i("MENU", "Applying Constraints");

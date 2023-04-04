@@ -11,6 +11,7 @@ import com.tattyhost.cocktail_mixer.CocktailActivity;
 import com.tattyhost.cocktail_mixer.helper.ButtonAction;
 import com.tattyhost.cocktail_mixer.network.NetworkTask;
 import com.tattyhost.cocktail_mixer.network.command.AddButton;
+import com.tattyhost.cocktail_mixer.network.command.ClearButton;
 import com.tattyhost.cocktail_mixer.network.command.UID;
 
 public class ConnectESPButton extends ButtonAction {
@@ -19,6 +20,7 @@ public class ConnectESPButton extends ButtonAction {
     private final TextView output;
     private final StringBuilder currentText = new StringBuilder();
     private final AddButton add;
+    private final ClearButton but;
     private final UID uid;
     private NetworkTask task;
     public ConnectESPButton(CocktailActivity cocktailActivity, Button button, TextView output) {
@@ -29,6 +31,7 @@ public class ConnectESPButton extends ButtonAction {
 
         uid = new UID(getActivity(), getActivity().getBinding().uid);
         add = new AddButton(getActivity().getMenu(), uid);
+        but = new ClearButton(getActivity().getMenu());
     }
 
     @Override
@@ -44,6 +47,7 @@ public class ConnectESPButton extends ButtonAction {
         uid.setNetworkTask(task);
         task.addCMD("add", add);
         task.addCMD("uid", uid);
+        task.addCMD("but", but);
         task.execute();
 
     }

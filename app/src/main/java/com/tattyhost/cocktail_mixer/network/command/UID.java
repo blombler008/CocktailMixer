@@ -22,6 +22,7 @@ public class UID extends NetworkCMD {
     @Getter
     private String currentUID;
     private boolean isTimeout = false;
+    private boolean requireUid = true;
 
     private final Runnable clearUIDTextRunnable;
     private final Runnable setUIDTextRunnable;
@@ -74,9 +75,12 @@ public class UID extends NetworkCMD {
                 break;
             case "get":
                 mHandler.removeCallbacks(clearUIDTextRunnable);
-                getNetworkTask().sendMessage("UID: " + currentUID);
+                getNetworkTask().sendMessage("uid " + currentUID);
                 currentUID = null;
                 mHandler.post(clearUIDTextRunnable);
+                break;
+            case "req":
+                requireUid = Boolean.parseBoolean(args[1]);
                 break;
             default:
                 break;
@@ -87,5 +91,9 @@ public class UID extends NetworkCMD {
 
     public boolean isUIDSet() {
         return currentUID != null;
+    }
+
+    public boolean isRequired() {
+        return requireUid;
     }
 }

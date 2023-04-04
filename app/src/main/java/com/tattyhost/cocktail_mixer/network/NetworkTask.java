@@ -93,6 +93,7 @@ public class NetworkTask extends AsyncTask<Void, Void, Void> {
                 messageQueue.remove(0);
                 espOutPut.println("Sending TCP to ESP32S2: " + msg);
                 out.println(msg);
+                out.flush();
             }
             if (in.ready()) {
                 String msg = getMessage(in.readLine());

@@ -24,11 +24,18 @@ public class AddButton extends NetworkCMD {
 
     @Override
     public void execute(String[] args) {
+        StringBuilder sb = new StringBuilder("");
+        for (int i = 1; i < args.length; i++) {
+            sb.append(args[i]);
+            if(i != args.length-1)
+                sb.append(' ');
+        }
+
         mHandler.post(() -> {
-            View v = menuCocktail.addItem(args[0], (CocktailActivity) menuCocktail.getContext());
-            getNetworkTask().sendMessage("but added " + v.getId() + " " +  args[1]);
+            View v = menuCocktail.addItem(sb.toString(), (CocktailActivity) menuCocktail.getContext());
+            getNetworkTask().sendMessage("but added " + v.getId() + " " +  args[0]);
             v.setOnClickListener((l) -> {
-                if(uid.isUIDSet())
+                if(uid.isUIDSet() || !uid.isRequired())
                     getNetworkTask().sendMessage("but " + v.getId());
             });
         });
